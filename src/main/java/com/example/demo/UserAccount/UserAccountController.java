@@ -26,10 +26,12 @@ public class UserAccountController {
 //        this.userAccount = userAccount;
 //
 //    }
-    @GetMapping
-    public List<UserAccount> getUserAccounts() {
-        return userAccountService.getUserAccount();
+    @GetMapping("/useraccount/{userName}")
+    public ResponseEntity<UserAccount> getUserDetails(@PathVariable String userName) {
+        System.out.println("userName "+userName);
+        UserAccount userAccount = userAccountService.getUserDetails(userName);
 
+        return ResponseEntity.ok(userAccount);
     }
     @PostMapping
     public void addUserAccount(@RequestBody UserAccount userAccount) {
